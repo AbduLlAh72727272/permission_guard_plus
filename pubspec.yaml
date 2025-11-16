@@ -46,6 +46,14 @@ flutter:
         pluginClass: PermissionGuardPlugin
       ios:
         pluginClass: PermissionGuardPlugin
+      web:
+        pluginClass: PermissionGuardWeb
+      windows:
+        pluginClass: PermissionGuardWindows
+      macos:
+        pluginClass: PermissionGuardMacos
+      linux:
+        pluginClass: PermissionGuardLinux
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

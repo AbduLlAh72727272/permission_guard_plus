@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 import 'permission_guard_platform_interface.dart';
+import 'permission_guard_stub.dart';
+import 'src/platform_detector.dart' as pd;
 
 /// Enum representing the native permission types.
 enum Permission {
@@ -63,6 +65,15 @@ class PermissionGuard {
     }
   }
 }
+
+// If running on a platform without native implementations (web, desktop),
+// register the Dart stub so calls won't fail. This runs at import time.
+final bool _didRegisterStub = (() {
+  if (pd.isWeb || pd.isWindows || pd.isLinux || pd.isMacOS) {
+    PermissionGuardPlatform.instance = StubPermissionGuard();
+  }
+  return true;
+})();
 
 /// Declarative API: The core widget for state-aware UI.
 class PermissionGuardWidget extends StatefulWidget {

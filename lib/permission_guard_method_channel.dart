@@ -12,13 +12,18 @@ class MethodChannelPermissionGuard extends PermissionGuardPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String>(
+      'getPlatformVersion',
+    );
     return version;
   }
 
   @override
   Future<String?> requestPermission(String permission) async {
-    final result = await methodChannel.invokeMethod<String>('requestPermission', {'permission': permission});
+    final result = await methodChannel.invokeMethod<String>(
+      'requestPermission',
+      {'permission': permission},
+    );
     return result;
   }
 

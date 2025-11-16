@@ -7,19 +7,20 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockPermissionGuardPlatform
     with MockPlatformInterfaceMixin
     implements PermissionGuardPlatform {
-
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
 
   @override
-  Future<String?> requestPermission(String permission) => Future.value('granted');
+  Future<String?> requestPermission(String permission) =>
+      Future.value('granted');
 
   @override
   Future<bool> openAppSettings() => Future.value(true);
 }
 
 void main() {
-  final PermissionGuardPlatform initialPlatform = PermissionGuardPlatform.instance;
+  final PermissionGuardPlatform initialPlatform =
+      PermissionGuardPlatform.instance;
 
   test('$MethodChannelPermissionGuard is the default instance', () {
     expect(initialPlatform, isInstanceOf<MethodChannelPermissionGuard>());

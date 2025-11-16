@@ -31,7 +31,8 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await PermissionGuard.getPlatformVersion() ?? 'Unknown platform version';
+          await PermissionGuard.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -50,9 +51,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
+        appBar: AppBar(title: const Text('Plugin example app')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -61,29 +60,37 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () async {
-                  final status = await PermissionGuard.request(Permission.camera);
+                  final status = await PermissionGuard.request(
+                    Permission.camera,
+                  );
                   if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Camera permission: $status')));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Camera permission: $status')),
+                  );
                 },
                 child: const Text('Request Camera Permission'),
               ),
               SizedBox(height: 24),
               // Example of the PermissionGuardWidget usage
-              Builder(builder: (ctx) {
-                return PermissionGuardWidget(
-                  permission: Permission.camera,
-                  onChecking: (_) => const CircularProgressIndicator(),
-                  onGranted: (_) => const Text('Permission granted — show feature'),
-                  onDenied: (_, __) => ElevatedButton(
-                    onPressed: () => PermissionGuard.request(Permission.camera),
-                    child: const Text('Request Again'),
-                  ),
-                  onPermanentlyDenied: (_) => ElevatedButton(
-                    onPressed: () => PermissionGuard.openSettings(),
-                    child: const Text('Open Settings'),
-                  ),
-                );
-              }),
+              Builder(
+                builder: (ctx) {
+                  return PermissionGuardWidget(
+                    permission: Permission.camera,
+                    onChecking: (_) => const CircularProgressIndicator(),
+                    onGranted: (_) =>
+                        const Text('Permission granted — show feature'),
+                    onDenied: (_, __) => ElevatedButton(
+                      onPressed: () =>
+                          PermissionGuard.request(Permission.camera),
+                      child: const Text('Request Again'),
+                    ),
+                    onPermanentlyDenied: (_) => ElevatedButton(
+                      onPressed: () => PermissionGuard.openSettings(),
+                      child: const Text('Open Settings'),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

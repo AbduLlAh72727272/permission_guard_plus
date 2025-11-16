@@ -24,6 +24,7 @@ class PermissionGuard {
   static Future<String?> getPlatformVersion() {
     return PermissionGuardPlatform.instance.getPlatformVersion();
   }
+
   /// Converts a native status string to the Dart enum.
   static PermissionStatus _parseStatus(String status) {
     switch (status) {
@@ -42,7 +43,8 @@ class PermissionGuard {
   static Future<PermissionStatus> request(Permission permission) async {
     final String permissionName = permission.name;
     try {
-      final String? result = await PermissionGuardPlatform.instance.requestPermission(permissionName);
+      final String? result = await PermissionGuardPlatform.instance
+          .requestPermission(permissionName);
       if (result != null) {
         return _parseStatus(result);
       }

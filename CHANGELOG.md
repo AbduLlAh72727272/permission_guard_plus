@@ -1,3 +1,7 @@
+## 0.1.1
+
+- Patch release: update packaging, add platform stubs (web/desktop), add SPM manifest, format and lint fixes.
+
 ## 0.1.0
 
 - Initial release of `permission_guard` with:

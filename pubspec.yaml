@@ -1,6 +1,6 @@
 name: permission_guard_plus
 description: "A Flutter plugin providing a simple API and widget to request and observe permissions on Android and iOS."
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/AbduLlAh72727272/permission_guard_plus
 repository: https://github.com/AbduLlAh72727272/permission_guard_plus
 issue_tracker: https://github.com/AbduLlAh72727272/permission_guard_plus/issues

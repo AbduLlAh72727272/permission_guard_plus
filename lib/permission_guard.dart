@@ -68,6 +68,7 @@ class PermissionGuard {
 
 // If running on a platform without native implementations (web, desktop),
 // register the Dart stub so calls won't fail. This runs at import time.
+// ignore: unused_element
 final bool _didRegisterStub = (() {
   if (pd.isWeb || pd.isWindows || pd.isLinux || pd.isMacOS) {
     PermissionGuardPlatform.instance = StubPermissionGuard();
